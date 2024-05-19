@@ -1,7 +1,5 @@
 package jpabook.jpashop.domain;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +7,8 @@ import java.util.List;
 @Entity
 public class Member {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
     private String name;
