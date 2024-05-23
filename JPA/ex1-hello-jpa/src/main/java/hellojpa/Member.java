@@ -23,7 +23,7 @@ public class Member {
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
-    @OneToMany(mappedBy = " member")
+    @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
