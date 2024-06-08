@@ -22,8 +22,9 @@ public class JpaMain {
             em.persist(team);
 
             Member member = new Member();
-            member.setUsername("teamA");
+            member.setUsername("관리자");
             member.setAge(10);
+            member.setType(MemberType.ADMIN);
 
             member.setTeam(team);
 
@@ -32,12 +33,15 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select mm.age, mm.username " +
-                    "         from (select m.age, m.username from Member m) as mm";
-            List<Member> result = em.createQuery(query, Member.class)
+            String query = "select nullif(m.username, '관리자') as username " +
+                    "from Member m ";
+            List<String> result = em.createQuery(query, String.class)
                     .getResultList();
 
-            System.out.println("result = " + result.size());
+            for (String s : result) {
+                System.out.println("s = " + s);
+            }
+
 
             tx.commit();
         } catch (Exception e) {
